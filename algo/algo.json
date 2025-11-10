@@ -1,0 +1,13 @@
+{
+    "currency": "USD",
+    "equities_to_trade": [
+      {
+        "symbol": "SBER",
+        "target_percentage": 50.0
+      },
+      {
+        "symbol": "NVDA",
+        "target_percentage": 50.0
+      }
+    ]
+  }
