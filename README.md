@@ -36,7 +36,7 @@ ingest_assets(asset_service=asset_service, asset_data_source=asset_data_source)
 #### 2. Загрузка исторических данных в бандл
 
 
-См. пример: [ingest_market_data.py]([https://github.com/arbuzovv/ziplimeFinam/blob/main/ingest_assets.py](https://github.com/arbuzovv/ziplimeFinam/blob/main/ingest_market_data.py))
+См. пример: [ingest_market_data.py](https://github.com/arbuzovv/ziplimeFinam/blob/main/ingest_market_data.py)
 ```bash
 import asyncio
 import datetime
