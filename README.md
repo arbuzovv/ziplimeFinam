@@ -38,7 +38,6 @@ ingest_assets(asset_service=asset_service, asset_data_source=asset_data_source)
 
 См. пример: [ingest_market_data.py](https://github.com/arbuzovv/ziplimeFinam/blob/main/ingest_market_data.py)
 ```bash
-import asyncio
 import datetime
 import pytz
 from ziplime.core.ingest_data import get_asset_service, ingest_market_data
@@ -48,14 +47,14 @@ import os
 os.environ['GRPC_TOKEN'] = 'ВАШ_API_TOKEN'
 os.environ['GRPC_SERVER_URL'] = 'api.finam.ru:443'
 
-async def _ingest_data_grpc():
-    asset_service = get_asset_service(clear_asset_db=False)
-    symbols = ["SBER@MISX"]
-    start_date = datetime.datetime(2025, 1, 1, tzinfo=pytz.timezone("America/New_York"))
-    end_date = datetime.datetime(2025, 9, 18, tzinfo=pytz.timezone("America/New_York"))
-    market_data_bundle_source = GrpcDataSource.from_env()
-    await market_data_bundle_source.get_token()
-    await ingest_market_data(
+
+asset_service = get_asset_service(clear_asset_db=False)
+symbols = ["SBER@MISX"]
+start_date = datetime.datetime(2025, 1, 1, tzinfo=pytz.timezone("America/New_York"))
+end_date = datetime.datetime(2025, 9, 18, tzinfo=pytz.timezone("America/New_York"))
+market_data_bundle_source = GrpcDataSource.from_env()
+market_data_bundle_source.get_token()
+ingest_market_data(
         start_date=start_date,
         end_date=end_date,
         symbols=symbols,
