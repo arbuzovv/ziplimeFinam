@@ -19,33 +19,32 @@ pip install ziplime
 
 #### 1. Получение справочника инструментов
 
-См. пример: ingest_assets_data_grpc.py
+См. пример: [ingest_assets.py](https://github.com/arbuzovv/ziplimeFinam/blob/main/ingest_assets.py)
 ```bash
-import asyncio
-import os
 from ziplime.core.ingest_data import get_asset_service, ingest_assets
 from ziplime.data.data_sources.grpc.grpc_asset_data_source import GrpcAssetDataSource
 
+import os
 os.environ['GRPC_TOKEN'] = 'ВАШ_API_TOKEN'
 os.environ['GRPC_SERVER_URL'] = 'api.finam.ru:443'
 
-async def ingest_assets_data_grpc():
-    asset_data_source = GrpcAssetDataSource.from_env()
-    asset_service = get_asset_service(clear_asset_db=True)
-    await ingest_assets(asset_service=asset_service, asset_data_source=asset_data_source)
+asset_data_source = GrpcAssetDataSource.from_env()
+asset_service = get_asset_service(clear_asset_db=True)
+ingest_assets(asset_service=asset_service, asset_data_source=asset_data_source)
 ```
 
 #### 2. Загрузка исторических данных в бандл
 
-См. пример: ingest_market_data_grpc.py
+
+См. пример: [ingest_market_data.py]([https://github.com/arbuzovv/ziplimeFinam/blob/main/ingest_assets.py](https://github.com/arbuzovv/ziplimeFinam/blob/main/ingest_market_data.py))
 ```bash
 import asyncio
 import datetime
-import os
 import pytz
 from ziplime.core.ingest_data import get_asset_service, ingest_market_data
 from ziplime.data.data_sources.grpc.grpc_data_source import GrpcDataSource
 
+import os
 os.environ['GRPC_TOKEN'] = 'ВАШ_API_TOKEN'
 os.environ['GRPC_SERVER_URL'] = 'api.finam.ru:443'
 
@@ -70,7 +69,7 @@ async def _ingest_data_grpc():
 
 #### 3. Запуск торгового алгоритма
 
-См. пример: run_simulation.py
+См. пример: [run_backtest.py](https://github.com/arbuzovv/ziplimeFinam/blob/main/run_backtest.py)
 ```bash
 import asyncio
 import datetime
@@ -128,6 +127,14 @@ async def _run_simulation():
         print(errors)
     print(res.head(n=10).to_markdown())
 ```
+#### 4. Примеры алгоритмов в папке алго
+
+Обычно указываются 2 файла:
+
+- [algo.py](https://github.com/arbuzovv/ziplimeFinam/blob/main/algo/algo.py) - сам код торгового алгоритма
+
+- [algo.json](https://github.com/arbuzovv/ziplimeFinam/blob/main/algo/algo.json) - конфиг, когда необходимо управлять алгоритмом более гибко
+
 
 ### Требования
 
